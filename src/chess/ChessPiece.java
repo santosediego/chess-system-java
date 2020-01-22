@@ -2,6 +2,7 @@ package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
+import boardgame.Position;
 
 /**
  * @author Diego Santos
@@ -17,5 +18,12 @@ public abstract class ChessPiece extends Piece{
 
     public Color getColor() {
         return color;
+    }
+    
+    /*protected = porque eu quero que essa funão seja somente acessivel pelo o mesmo pacote e 
+    as mesmas classes que são as peças*/
+    protected boolean isThereOpponentPiece(Position position){
+        ChessPiece p = (ChessPiece)getBoard().piece(position);
+        return p != null && p.getColor() != color;
     }
 }
