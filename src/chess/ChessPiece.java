@@ -20,6 +20,10 @@ public abstract class ChessPiece extends Piece{
         return color;
     }
     
+    public ChessPosition getChessPosotion(){
+        return ChessPosition.fromPosition(position);
+    }
+    
     /*protected = porque eu quero que essa funão seja somente acessivel pelo o mesmo pacote e 
     as mesmas classes que são as peças*/
     protected boolean isThereOpponentPiece(Position position){
