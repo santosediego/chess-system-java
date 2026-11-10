@@ -1,23 +1,27 @@
 # Chess System Java
 
-![Java](https://img.shields.io/badge/Java-8%2B-orange)
-![Interface](https://img.shields.io/badge/Interface-Console-lightgrey)
-![Tipo](https://img.shields.io/badge/Tipo-Projeto%20de%20estudo-blue)
+![Java](https://img.shields.io/badge/java_8-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![NetBeans](https://img.shields.io/badge/netbeans_8.1-%231B6AC6.svg?style=for-the-badge&logo=apachenetbeanside&logoColor=white)
+![Console](https://img.shields.io/badge/interface-console-%234EAA25.svg?style=for-the-badge&logo=gnubash&logoColor=white)
 
-Jogo de xadrez para dois jogadores que roda no terminal, escrito em Java puro (sem frameworks e sem dependências). Foi feito como projeto de estudo de orientação a objetos durante o curso de Java do professor Nélio Alves, entre setembro de 2019 e fevereiro de 2020.
+## Sobre o projeto
+
+Chess System Java é um jogo de xadrez para dois jogadores que roda no terminal, escrito em Java puro, sem frameworks e sem dependências.
+
+Foi construído como o projeto bônus da **Seção 23** (Sistema jogo de xadrez) do curso [Java COMPLETO Programação Orientada a Objetos + Projetos](https://www.udemy.com/course/java-curso-completo/ "Curso na Udemy"), do professor [Nélio Alves](https://github.com/acenelio "GitHub do Nélio Alves"). O objetivo do projeto é praticar orientação a objetos: herança, polimorfismo, tratamento de exceções e separação em camadas. O desenvolvimento aconteceu entre setembro de 2019 e fevereiro de 2020, e o histórico de commits mostra a evolução, uma funcionalidade por vez.
 
 ## O que o jogo faz
 
-- Tabuleiro 8x8 com todas as peças em posição inicial (rei, dama, torres, bispos, cavalos e peões).
+- Tabuleiro 8x8 com todas as peças na posição inicial (rei, dama, torres, bispos, cavalos e peões).
 - Movimento de cada peça com as regras de captura.
 - Destaque, no tabuleiro, das casas para onde a peça escolhida pode ir.
 - Alternância de turnos entre brancas e pretas e lista de peças capturadas.
 - **Xeque** e **xeque-mate**, impedindo jogadas que deixem o próprio rei em xeque.
 - Jogadas especiais: **roque** (pequeno e grande), **en passant** e **promoção do peão**.
 
-## Exemplo
+## Telas
 
-Partida do "mate do louco" (4 lances), com o tabuleiro no terminal:
+Partida do "mate do louco" (4 lances), como aparece no terminal:
 
 ```
 8 R N B - K B N R
@@ -35,38 +39,19 @@ CHECKMATE!
 Winner: BLACK
 ```
 
-No terminal as peças brancas aparecem em branco, as pretas em amarelo, e as casas possíveis de movimento ganham fundo azul.
+No terminal, as peças brancas aparecem em branco, as pretas em amarelo, e as casas possíveis de movimento ganham fundo azul.
 
-## Como executar
+## Tecnologias utilizadas
 
-Requisito: JDK 8 ou superior.
+- Java 8 (funciona também em versões mais novas)
+- Programação orientada a objetos
+- NetBeans 8.1
+- Git
+- Cores ANSI para a impressão do tabuleiro no terminal
 
-```bash
-git clone https://github.com/santosediego/chess-system-java.git
-cd chess-system-java
-mkdir out
+## Estrutura do código
 
-# Linux, macOS ou Git Bash
-javac -encoding UTF-8 -d out $(find src -name '*.java')
-
-# PowerShell
-# javac -encoding UTF-8 -d out (Get-ChildItem -Recurse src -Filter *.java).FullName
-
-java -cp out application.Program
-```
-
-Também abre direto no NetBeans (o projeto foi criado nele). A classe principal é `application.Program`.
-
-## Como jogar
-
-1. Digite a posição da peça que quer mover (`Source`), por exemplo `e2`.
-2. O tabuleiro mostra as casas possíveis. Digite o destino (`Target`), por exemplo `e4`.
-3. As posições vão de `a1` a `h8`. As brancas começam.
-4. Na promoção do peão, escolha a nova peça: `B` (bispo), `N` (cavalo), `R` (torre) ou `Q` (dama).
-
-## Estrutura
-
-O código é dividido em três camadas, cada uma só conhece a de baixo:
+O código é dividido em três camadas, e cada uma só conhece a de baixo:
 
 ```
 src/
@@ -76,15 +61,46 @@ src/
 └── boardgame/     # Camada genérica de jogo de tabuleiro (Board, Piece, Position)
 ```
 
-A camada `boardgame` não sabe nada de xadrez: ela só entende posições e peças. Assim, as regras ficam todas em `chess`, e a interface não mexe diretamente no tabuleiro.
+A camada `boardgame` não sabe nada de xadrez, só entende posições e peças. Por isso as regras ficam todas em `chess`, e a interface não mexe diretamente no tabuleiro.
+
+## Como executar o projeto
+
+Pré-requisito: JDK 8 ou superior.
+
+```bash
+# clonar repositório
+git clone https://github.com/santosediego/chess-system-java.git
+
+# entrar na pasta do projeto
+cd chess-system-java
+
+# compilar (Linux, macOS ou Git Bash)
+mkdir out
+javac -encoding UTF-8 -d out $(find src -name '*.java')
+
+# no PowerShell, compile com:
+# javac -encoding UTF-8 -d out (Get-ChildItem -Recurse src -Filter *.java).FullName
+
+# executar
+java -cp out application.Program
+```
+
+O projeto também abre direto no NetBeans, e a classe principal é `application.Program`.
+
+### Como jogar
+
+1. Digite a posição da peça que quer mover (`Source`), por exemplo `e2`.
+2. O tabuleiro mostra as casas possíveis. Digite o destino (`Target`), por exemplo `e4`.
+3. As posições vão de `a1` a `h8`, e as brancas começam.
+4. Na promoção do peão, escolha a nova peça: `B` (bispo), `N` (cavalo), `R` (torre) ou `Q` (dama).
 
 ## Limitações conhecidas
 
 - Não detecta empate (afogamento, repetição de posição, regra dos 50 lances e material insuficiente). Se a partida travar sem xeque-mate, é preciso encerrar com `Ctrl+C`.
 - Só roda no console, com dois jogadores no mesmo terminal. Não há computador como adversário nem como salvar a partida.
-- Usa cores ANSI. Em terminais sem suporte (como o `cmd` antigo do Windows) aparecem caracteres estranhos; no Windows Terminal, PowerShell recente ou Git Bash funciona normalmente.
+- Usa cores ANSI. Em terminais sem suporte (como o `cmd` antigo do Windows) aparecem caracteres estranhos; no Windows Terminal, no PowerShell recente ou no Git Bash funciona normalmente.
 - Mensagens da interface em inglês, como no curso.
 
-## Créditos
+## Autor
 
-Projeto desenvolvido durante o curso de Java do professor Nélio Alves na Udemy, seguindo a modelagem e a arquitetura em camadas das aulas. O histórico de commits mostra a evolução, uma funcionalidade por commit.
+[Diego Santos](https://www.linkedin.com/in/santosediego/ "Perfil Linkedin Diego Santos")
