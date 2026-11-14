@@ -101,6 +101,6 @@ O projeto também abre direto no NetBeans, e a classe principal é `application.
 - Usa cores ANSI. Em terminais sem suporte (como o `cmd` antigo do Windows) aparecem caracteres estranhos; no Windows Terminal, no PowerShell recente ou no Git Bash funciona normalmente.
 - Mensagens da interface em inglês, como no curso.
 
-## Autor
+## Aluno
 
 [Diego Santos](https://www.linkedin.com/in/santosediego/ "Perfil Linkedin Diego Santos")
